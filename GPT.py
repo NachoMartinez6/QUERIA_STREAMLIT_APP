@@ -33,7 +33,7 @@ db = SQLDatabase.from_uri("sqlite:///queria.db")
 
 # Creamos el LLM
 llm = ChatOpenAI(temperature=0,
-             model='gpt-3.5-turbo'
+             model='gpt-4o-mini'
 )
 
 # Creamos la cadena
