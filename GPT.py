@@ -196,6 +196,7 @@ if prompt := st.chat_input("Tu mejor prompt"):
             if content:
                 response_text += content
                 response_placeholder.markdown(response_text)
+                
         response = response_text
         # response = st.write_stream(response_generator(prompt))
         # response = st.write_stream(stream)
