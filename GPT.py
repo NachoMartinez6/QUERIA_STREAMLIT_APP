@@ -184,9 +184,21 @@ if prompt := st.chat_input("Tu mejor prompt"):
             messages= mensajes, # + history,
             stream=True,
         )
-
+        
+        response_text = ""
+        response_placeholder = st.empty()
+        
+        for chunk in stream:
+            # Cada chunk es un objeto OpenAI (p.ej. { "choices": [...] })
+            delta = chunk.choices[0].delta
+            # El texto puede estar en 'content', si no existe, ignoramos
+            content = getattr(delta, "content", None)
+            if content:
+                response_text += content
+                response_placeholder.markdown(response_text)
+        response = response_text
         # response = st.write_stream(response_generator(prompt))
-        response = st.write_stream(stream)
+        # response = st.write_stream(stream)
     st.session_state.messages.append({"role": "system", "content": response, 'avatar': avatar_asistente})
 
 
